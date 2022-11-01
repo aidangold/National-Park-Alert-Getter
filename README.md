@@ -5,7 +5,7 @@ This Microservice that using it's own REST API pings the National Parks API usin
 # Running the server
 To run the server, run the following command from the root directory:
 
-uvicorn main:app --reload
+uvicorn main:app
 This will start the server on localhost:8000. --reload is optional and will reload the server on any changes to the code. You can change the port by adding --port <port_number> to the command.
 
 # Using and Endpoints
