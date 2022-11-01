@@ -14,4 +14,5 @@ main.py file) then enter a parkCode from one of any of the National Parks. At wh
 
 Endpoint is GET /alerts?parkCode={park code goes here}
 
+# UML Diagram
 ![alt text](https://github.com/aidangold/National-Park-Alert-Getter/blob/main/natpark_uml.png)
