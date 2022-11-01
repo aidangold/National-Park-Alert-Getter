@@ -7,3 +7,9 @@ To run the server, run the following command from the root directory:
 
 uvicorn main:app --reload
 This will start the server on localhost:8000. --reload is optional and will reload the server on any changes to the code. You can change the port by adding --port <port_number> to the command.
+
+# Using and Endpoints
+To use the server simply ensure it is running, when it is ran, or restarted a user input promp will appear (at this time is will appear in the separate terminal to the 
+main.py file) then enter a parkCode from one of any of the National Parks. At which point the local server will display the desired JSON data relating to the alerts of that park.
+
+Endpoint is GET /alerts?parkCode={park code goes here}
