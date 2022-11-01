@@ -13,3 +13,5 @@ To use the server simply ensure it is running, when it is ran, or restarted a us
 main.py file) then enter a parkCode from one of any of the National Parks. At which point the local server will display the desired JSON data relating to the alerts of that park.
 
 Endpoint is GET /alerts?parkCode={park code goes here}
+
+https://github.com/aidangold/National-Park-Alert-Getter/blob/main/natpark_uml.png
