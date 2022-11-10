@@ -1,18 +1,45 @@
-import requests
-import json
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import requests
+
+
+# url = "https://developer.nps.gov/api/v1/alerts/"
+# key = 'ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB'
+
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+]
 
-@app.get("/")
-async def root():
-    given = input("Enter National Park Code here: ")
-    # url = "https://developer.nps.gov/api/v1/alerts/"
-    # key = 'ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB'
-    dynamic = "https://developer.nps.gov/api/v1/alerts?parkCode=" + given + "&api_key=ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB"
-    response_api = requests.get(dynamic)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    data = response_api.text
-    access = json.loads(data)
-    return access
+
+@app.get("/{limit}")
+async def get_alerts(limit):
+    dynamic = "https://developer.nps.gov/api/v1/alerts?limit=" + \
+        limit+"&api_key=ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB"
+    response = requests.get(dynamic)
+    data = response.json()
+    package = data['data']
+    return package
+
+
+@app.get("/park/{parkCode}")
+async def alerts(parkCode):
+    dynamic = "https://developer.nps.gov/api/v1/alerts?parkCode=" + \
+        parkCode + "&limit=50&api_key=ZJvoWwN2zapHRpAyW8GdbtzylT3WOdt8eR9FXMKB"
+    response = requests.get(dynamic)
+    data = response.json()
+    package = data['data']
+    return package
